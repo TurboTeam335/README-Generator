@@ -17,7 +17,7 @@ const questions = [
     name: "description",
   },
   {
-    type: "checkbox",
+    type: "list",
     message: "What is the license of your project?",
     name: "license",
     choices: ["GNU AGPL v3", "IBM", "MIT", "BSD-2", "MOZILLA"],
@@ -39,6 +39,11 @@ const questions = [
   },
   {
     type: "input",
+    message: "What is your Email",
+    name: "email",
+  },
+  {
+    type: "input",
     message: "Please list any contributors.",
     name: "contributors",
   },
@@ -56,7 +61,7 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-  inquirer.createPromptModule(questions).then(response => {
+  inquirer.prompt(questions).then(response => {
     console.log("Creating Professional README.md File");
     writeToFile("README.md", generateMarkdown({ ...response }));
   });
